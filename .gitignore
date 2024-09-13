@@ -1,2 +1,15 @@
 node_modules/
 dist/
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+*.local
+
+# Firebase Functions
+functions/node_modules
+functions/lib
+functions/dist
+
+# Firebase Service Account Key
+serviceAccountKey.json
