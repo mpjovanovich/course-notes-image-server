@@ -1,12 +1,10 @@
 node_modules/
 dist/
+.env
+*debug*
 
 # Firebase
-firebase-debug.log
-firebase-debug.*.log
 *.local
-
-# Firebase Functions
 functions/node_modules
 functions/lib
 functions/dist

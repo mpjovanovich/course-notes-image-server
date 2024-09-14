@@ -1,4 +1,0 @@
-
-Setup test suite.
-Store image info in firebase.
-Switch firebase DB from test mode to production mode within 30 days.
