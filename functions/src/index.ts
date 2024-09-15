@@ -3,6 +3,21 @@ import * as functions from "firebase-functions";
 // import { initializeApp } from "firebase/app";
 // import { getFirestore, collection, getDocs } from "firebase/firestore";
 
+/*
+// TO TEST:
+// To start server, from functions directory run: "npm run serve"
+// curl -X POST -H "Content-Type: application/json" -d '{"course":"SDEV120"}' http://localhost:5001/course-notes-image-server/us-central1/imageService
+*/
+
+interface ImageRequest {
+  course: string;
+}
+
+interface ImageResponse {
+  url: string;
+  alt: string;
+}
+
 // const firebaseConfig = {
 //   apiKey: process.env.FIREBASE_API_KEY,
 //   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -20,23 +35,24 @@ expressApp.use(express.json());
 
 // Basic test endpoint
 expressApp.get("/", (req: Request, res: Response) => {
-  res.send("Hello from Firebase!");
+  const returnImage: ImageResponse = {
+    url: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+    alt: "Google logo",
+  };
+  res.send(returnImage);
 });
 
-// expressApp.get("/images", async (req: Request, res: Response) => {
-//   try {
-//     const snapshot = await getDocs(collection(db, "images"));
-//     const images = snapshot.docs.map((doc) => doc.data());
-//     res.json(images);
-//   } catch (error) {
-//     console.error("Error getting images:", error);
-//     res.status(500).json({ error: "Failed to get images" });
-//   }
-// });
+// Get an ImageRequest from the request body
+expressApp.post("/", async (req: Request, res: Response) => {
+  const imageRequest: ImageRequest = req.body;
+  console.log("course:", imageRequest.course);
+
+  const returnImage: ImageResponse = {
+    url: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+    alt: "Google logo",
+  };
+  res.send(returnImage);
+});
 
 // Export the Express app as a Cloud Function
 export const imageService = functions.https.onRequest(expressApp);
-
-// TEST:
-// To start server, from functions directory run: "npm run serve"
-// curl http://localhost:5001/course-notes-image-server/us-central1/imageService
