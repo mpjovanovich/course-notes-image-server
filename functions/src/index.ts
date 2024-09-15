@@ -3,11 +3,16 @@ import * as functions from "firebase-functions";
 // import { initializeApp } from "firebase/app";
 // import { getFirestore, collection, getDocs } from "firebase/firestore";
 
-/*
-// TO TEST:
-// To start server, from functions directory run: "npm run serve"
-// curl -X POST -H "Content-Type: application/json" -d '{"course":"SDEV120"}' http://localhost:5001/course-notes-image-server/us-central1/imageService
-*/
+/* ****** TESTING ****** */
+
+// DEV:
+// Start server. From functions directory run: "npm run serve".
+// curl -X POST http://localhost:5001/course-notes-image-server/us-central1/imageService -H "Content-Type: application/json" -d '{"course":"SDEV120"}'
+
+// LIVE:
+// curl -X POST https://us-central1-course-notes-image-server.cloudfunctions.net/imageService -H "Content-Type: application/json" -d '{"course": "example"}'
+
+/* ********************** */
 
 interface ImageRequest {
   course: string;
